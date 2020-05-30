@@ -1,1 +1,1 @@
-# Spike-sorting with spike waveform reconstruction and misalignment adjustment
+# Spike sorting and spike tempalte reconstruction with misalignment adjustment
