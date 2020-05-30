@@ -150,7 +150,7 @@ class Modules:
 
             
     def spw_clustering(self,order_harmonics,min_class_size=100):
-        self.order_harmonics_ = order_harmonics
+        self.order_harmonics_ = order_harmonics-1
         hdb = HDBSCAN(min_cluster_size=min_class_size, cluster_selection_method='eom', allow_single_cluster=True).fit(self.amplitude_[:,[self.order_harmonics_]])
         self.classification_labels_ = hdb.labels_.copy()
     
