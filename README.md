@@ -1,4 +1,4 @@
-# Spike sorting with misalignment adjustment (under construction)
+# Spike sorting with misalignment adjustment
 ## Introduction 
 
 the spike sorting code is written in Python 3 and developed in OS X 10.15. 
@@ -8,5 +8,6 @@ We show an example of spike sorting using simulated data. The demostration code 
 Quiroga, R. Q., Nadasdy, Z. & Ben-Shaul, Y. Unsupervised spike detection and sorting with wavelets and superparamagnetic clustering. Neural Comput. 16(8), 1661-1687 (2004).
 
 ## Notification
+This repository is under construction.
 The code for spike sorting in this repository still only support the simulated data proposed by Quiroga et al. 
 
