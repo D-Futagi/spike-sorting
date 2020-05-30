@@ -1,5 +1,5 @@
-# Spike sorting with misalignment adjustment
-## Introduction (under construction)
+# Spike sorting with misalignment adjustment (under construction)
+## Introduction 
 
 the spike sorting code is written in Python 3 and developed in OS X 10.15. 
 ## Demonstration
