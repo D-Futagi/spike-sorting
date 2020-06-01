@@ -1,35 +1,20 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[56]:
+# In[21]:
 
 
 import numpy as np 
 import h5py
 import matplotlib.pyplot as plt
-import scipy
-import collections
-from sklearn.decomposition import PCA
-from matplotlib.colors import ListedColormap
-from hdbscan import HDBSCAN
-from scipy import signal, interpolate
-from itertools import product
-from scipy.signal import firwin, lfilter
-from math import *
-import matplotlib.font_manager
-import matplotlib as mpl
-from matplotlib.gridspec import GridSpec, GridSpecFromSubplotSpec
-import matplotlib.cm as cm
-from sklearn.metrics import adjusted_rand_score
-from scipy.spatial import distance
+import scipy.signal
 import GPy
-import sys
-import seaborn as sns
-import matplotlib.pyplot as plt
+from sklearn.decomposition import PCA
+from hdbscan import HDBSCAN
 from tqdm import tqdm
 
 
-# In[60]:
+# In[20]:
 
 
 def fourier_transform(waveform, num_harmonics, len_spw):
@@ -49,9 +34,9 @@ def delt(base,target):
     delt = target - base
     if np.abs(delt) > np.pi:
         if base >= 0:
-            delt = 2*pi + delt
+            delt = 2*np.pi + delt
         else:
-            delt = delt - 2*pi
+            delt = delt - 2*np.pi
             
     return delt
 
@@ -94,8 +79,8 @@ class Modules:
         nyq = sampling_rate / 2
         cutoff = np.array([bottom]) / nyq
         numtaps = 255
-        bpf = firwin(numtaps, cutoff, pass_zero=False)
-        self.filtered_data_ = lfilter(bpf, 1, self.raw_data_)[int((numtaps-1)/2):]
+        bpf = scipy.signal.firwin(numtaps, cutoff, pass_zero=False)
+        self.filtered_data_ = scipy.signal.lfilter(bpf, 1, self.raw_data_)[int((numtaps-1)/2):]
     
     def spike_detection(self, f_std=3.5):
         wide = 36
@@ -135,7 +120,7 @@ class Modules:
         self.order_diff_ = diff_order
         self.padded_diff_waveform = np.zeros((num_spw,len_spw))
         
-        diff_waveform = np.diff(self.single_peak_waveform_, diff_order).copy()*signal.hamming(len_spw-diff_order)
+        diff_waveform = np.diff(self.single_peak_waveform_, diff_order).copy()*scipy.signal.hamming(len_spw-diff_order)
         self.padded_diff_waveform[:,0:len_spw-diff_order] = np.copy(diff_waveform.T - diff_waveform.mean(1)).T
          
         self.fourier_coeff_a = np.zeros((num_spw, num_harmonics))
